@@ -1,7 +1,22 @@
-<h1>Showing article details</h1>
-<p><strong>Title: </strong><%= @article.title %></p>
-<p><strong>Description:</strong><%= @article.desription %></p>
 
-<p><%= link_to 'Edit This Article ', edit_article_path(@article) %></p>
-<p><%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: "Are sure You want to delete this Article?"} %></p>
-<p><%= link_to 'Go Back', articles_path %></p>
+  <div class="container">
+    <h2 class="text-center mt-4"> <%= @article.title %></h2>
+        <div class="row justify-content-md-center">
+          <div class="col-8 mt-4">
+            <div class="card text-center shadow-lg mb-5 bg-white rounded">
+              <div class="card-header fst-italic">
+                by Arkadiusz Sowa
+                </div>
+                  <div class="card-body">
+                    <div class="card-text text-left"><%= simple_format(@article.desription) %></div>
+                    <%= link_to "Edit", edit_article_path(@article), class:"btn btn-outline-info"%>
+                    <%= button_to "Delete", article_path(@article),  class:"btn btn-outline-danger", form: {style: 'display:inline-block;'},method: :delete, data: {confirm: "Are you sure?"}%>
+                  </div>
+                <div class="card-footer text-muted">
+                <small>Created <%= time_ago_in_words(@article.created_at) %> ago,</small>
+                <small>Edited <%= time_ago_in_words(@article.updated_at) %> ago.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
